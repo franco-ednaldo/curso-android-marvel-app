@@ -38,14 +38,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/app_menu_items" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/circular"
-        app:srcCompat="@drawable/ic_heroes_menu_outlined" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
