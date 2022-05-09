@@ -43,7 +43,6 @@ object NetworkModule {
         )
     }
 
-
     @Provides
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,

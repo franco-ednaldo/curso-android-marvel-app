@@ -27,11 +27,7 @@ class AuthorizationInterceptor(
             .addQueryParameter(QUERY_PARAMETER_HASH, hash)
             .build()
 
-        return chain.proceed(
-            request.newBuilder()
-                .url(newUrl)
-                .build()
-        )
+        return chain.proceed(request.newBuilder().url(newUrl).build())
     }
 
     @Suppress("MagicNumber")
