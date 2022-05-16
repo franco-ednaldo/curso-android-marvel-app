@@ -25,8 +25,8 @@ class CharactersViewHolder(itemCharacterBinding: ItemCharacterBinding) :
     companion object {
         fun create(parent: ViewGroup): CharactersViewHolder {
             val inflater = LayoutInflater.from(parent.context)
-            val itemBindng = ItemCharacterBinding.inflate(inflater, parent, false)
-            return CharactersViewHolder(itemBindng)
+            val itemBinding = ItemCharacterBinding.inflate(inflater, parent, false)
+            return CharactersViewHolder(itemBinding)
         }
     }
 

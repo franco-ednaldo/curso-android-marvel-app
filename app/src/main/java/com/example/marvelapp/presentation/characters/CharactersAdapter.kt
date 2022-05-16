@@ -8,7 +8,6 @@ import com.example.core.domain.model.Character
 
 class CharactersAdapter : ListAdapter<Character, CharactersViewHolder>(diffCallback) {
 
-
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
        holder.bind(getItem(position))
     }

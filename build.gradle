@@ -5,6 +5,8 @@ buildscript {
         nav_version = "2.3.4"
         hilt_version = '2.39.1'
         detekt_version = '1.18.0'
+        coroutines_version = "1.5.1"
+        paging_version = "3.0.1"
     }
     repositories {
         google()
