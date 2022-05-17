@@ -8,5 +8,5 @@ import retrofit2.http.QueryMap
 interface MarvelApi {
 
     @GET("characters")
-    suspend fun getCharacters(@QueryMap queries: Map<String, String>): Call<DataWrapperResponse>
+    suspend fun getCharacters(@QueryMap queries: Map<String, String>): DataWrapperResponse
 }
