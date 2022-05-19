@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.example.marvelapp.databinding.FragmentCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +26,7 @@ class CharactersFragment : Fragment() {
 
     private val viewModel: CharactersViewModel by viewModels()
 
-    private val charactersAdapter = CharactersAdapter()
+    private lateinit var charactersAdapter: CharactersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,16 +44,25 @@ class CharactersFragment : Fragment() {
         initCharactersAdapter()
         observeInitialLoadState()
         lifecycleScope.launch {
-            viewModel.charactersPagingData("").collect { pagingData ->
-                charactersAdapter.submitData(pagingData)
+            // faz stop do flow quando app vai para background
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.charactersPagingData("").collect { pagingData ->
+                    charactersAdapter.submitData(pagingData)
+                }
             }
         }
     }
 
     private fun initCharactersAdapter() {
+        charactersAdapter = CharactersAdapter()
         with(binding.recycleCharacters) {
             setHasFixedSize(true) // items com msm tamanho
-            adapter = charactersAdapter
+            scrollToPosition(0)
+            adapter = charactersAdapter.withLoadStateFooter(
+                footer = CharactersLoadStateAdapter(
+                    charactersAdapter::retry
+                )
+            )
         }
     }
 
